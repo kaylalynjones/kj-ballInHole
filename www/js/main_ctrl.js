@@ -17,16 +17,23 @@
     $scope.yHole = Math.floor(Math.random()*($scope.height - 50 + 1) + 50);
     $scope.xHole = Math.floor(Math.random()*($scope.width - 50 + 1) + 50);
     //Math.floor(Math.random() * (max - min + 1) + min);
-  function success(orientation){
-    console.log('alpha:'+ orientation.alpha + ', beta' + orientation.beta +', gamma' + orientation.gamma);
-    $scope.orientation = orientation;
-    $scope.$digest();
-  }
-  function error(err){
-    console.log('error', err);
-  }
-  $scope.start = function(){
-    navigator.gyroscope.watchGyroscope(success, error, {frequency:100});
-  };
+
+    //ios gyroscope
+    /*function success(orientation){
+      console.log('alpha:'+ orientation.alpha + ', beta' + orientation.beta +', gamma' + orientation.gamma);
+      $scope.orientation = orientation;
+      $scope.$digest();
+    }
+    function error(err){
+      console.log('error', err);
+    }
+    $scope.start = function(){
+      navigator.gyroscope.watchGyroscope(success, error, {frequency:100});
+    };*/
+    window.addEventListener('deviceorientation', function(data){
+      $scope.data = data;
+      $scope.$digest();
+    });
+
   }]);
 })();
