@@ -5,6 +5,7 @@ html
     meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width')
     title
     link(href='css/ionic.app.css', rel='stylesheet')
+    link(href='css/style.css', rel='stylesheet')
     script(src='lib/ionic/js/ionic.bundle.js')
     script(src='cordova.js')
     script(src='js/app.js')
@@ -14,8 +15,8 @@ html
       ion-header-bar.bar-stable
         h1.title Tenative: Ball-in-Hole
       ion-content(ng-controller='MainCtrl')
-        h2 {{hello}}
-        width {{width}}
-        height {{height}}
-        availwidth {{availwidth}}
-        availHeight {{availHeight}}
+
+        .ball(style='top:{{y}}px; left:{{x}}px;')
+        .hole(style='top: 20px; left:20px;')
+      .bar.bar-footer.bar-stable
+        button.button.button-assertive.pull-right Start!
