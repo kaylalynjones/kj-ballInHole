@@ -5,7 +5,9 @@
     var canvas,
         holeCanvas,
         context,
-        holeContext;
+        ballCanvas,
+        holeContext,
+        ballContext;
 
     //get device size
     $scope.trueWidth = document.documentElement.clientWidth * 1;
@@ -25,7 +27,7 @@
       context.fillStyle = '#289eb5';
       context.fillRect(0, 0, $scope.trueWidth, $scope.trueHeight);
 
-      // CIRCLE---------------------
+      // HOLE  -------------------------
       holeCanvas = document.getElementById('hole');
       holeContext = holeCanvas.getContext('2d');
       var centerX = $scope.xHole,
@@ -40,7 +42,20 @@
       context.stroke();
       //---------------------------------
 
-
+      //----BALL-------------------------
+      ballCanvas = document.getElementById('ball');
+      ballContext = ballCanvas.getContext('2d');
+      var ballCenterX = $scope.x,
+          ballCenterY = $scope.y,
+          radius      = 30;
+      context.beginPath();
+      context.arc(ballCenterX, ballCenterY, radius, 0, 2 * Math.PI, false);
+      context.fillStyle = 'yellow';
+      context.fill();
+      context.lineWidth = 1;
+      context.strokeStyle = 'yellow';
+      context.stroke();
+      //-----------------------------------
     }
 
 
