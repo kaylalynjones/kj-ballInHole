@@ -1,5 +1,5 @@
-.body {
-  position: relative;
+body {
+  background-color: black;
 
 }
 .ball {
@@ -16,4 +16,8 @@
   width: 30px;
   border-radius: 50%;
   position: absolute;
+}
+canvas {
+  margin: 0;
+
 }

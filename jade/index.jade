@@ -13,11 +13,7 @@ html
   body(ng-app='kj-ball')
     ion-pane
       ion-header-bar.bar-stable
-        h1.title Tenative: Ball-in-Hole
+        button.button.button-calm New Game
+        h1.title Ball-in-Hole
       ion-content(ng-controller='MainCtrl')
-        .ball(style='top:{{y}}px; left:{{x}}px;')
-        .hole(style='top: {{yHole}}px; left:{{xHole}}px;')
-        p {{width}}
-      .bar.bar-footer.bar-stable
-        button.button.button-assertive Start
-        button.button.button-balanced.pull-right Reset
+        canvas#gameboard(style='width:{{trueWidth}}px; height:{{trueHeight}}px;')

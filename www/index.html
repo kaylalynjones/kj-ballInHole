@@ -14,17 +14,12 @@
   <body ng-app="kj-ball">
     <ion-pane>
       <ion-header-bar class="bar-stable">
-        <h1 class="title">Tenative: Ball-in-Hole</h1>
+        <button class="button button-calm">New Game</button>
+        <h1 class="title">Ball-in-Hole</h1>
       </ion-header-bar>
       <ion-content ng-controller="MainCtrl">
-        <div style="top:{{y}}px; left:{{x}}px;" class="ball"></div>
-        <div style="top: {{yHole}}px; left:{{xHole}}px;" class="hole"></div>
-        <p>{{width}}</p>
+        <canvas id="gameboard" style="width:{{trueWidth}}px; height:{{trueHeight}}px;"></canvas>
       </ion-content>
-      <div class="bar bar-footer bar-stable">
-        <button class="button button-assertive">Start</button>
-        <button class="button button-balanced pull-right">Reset</button>
-      </div>
     </ion-pane>
   </body>
 </html>
