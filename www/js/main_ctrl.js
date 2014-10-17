@@ -32,7 +32,7 @@
       holeContext = holeCanvas.getContext('2d');
       var centerX = $scope.xHole,
       centerY = $scope.yHole,
-      radius = 40;
+      radius = 15;
       context.beginPath();
       context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
       context.fillStyle = 'black';
@@ -47,9 +47,9 @@
       ballContext = ballCanvas.getContext('2d');
       var ballCenterX = $scope.x,
           ballCenterY = $scope.y,
-          radius      = 30;
+          ballRadius      = 10;
       context.beginPath();
-      context.arc(ballCenterX, ballCenterY, radius, 0, 2 * Math.PI, false);
+      context.arc(ballCenterX, ballCenterY, ballRadius, 0, 2 * Math.PI, false);
       context.fillStyle = 'yellow';
       context.fill();
       context.lineWidth = 1;
