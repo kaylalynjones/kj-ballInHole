@@ -13,7 +13,9 @@ html
   body(ng-app='kj-ball')
     ion-pane
       ion-header-bar.bar-stable
-        button.button.button-calm New Game
+        button.button.button-calm(ng-click='init()') New Game
         h1.title Ball-in-Hole
       ion-content(ng-controller='MainCtrl')
-        canvas#gameboard(style='width:{{trueWidth}}px; height:{{trueHeight}}px;')
+        .background(style='width:{{trueWidth}}px; height:{{trueHeight}}px;')
+          canvas#gameboard
+            .hole

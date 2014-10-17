@@ -14,11 +14,15 @@
   <body ng-app="kj-ball">
     <ion-pane>
       <ion-header-bar class="bar-stable">
-        <button class="button button-calm">New Game</button>
+        <button ng-click="init()" class="button button-calm">New Game</button>
         <h1 class="title">Ball-in-Hole</h1>
       </ion-header-bar>
       <ion-content ng-controller="MainCtrl">
-        <canvas id="gameboard" style="width:{{trueWidth}}px; height:{{trueHeight}}px;"></canvas>
+        <div style="width:{{trueWidth}}px; height:{{trueHeight}}px;" class="background">
+          <canvas id="gameboard">
+            <div class="hole"></div>
+          </canvas>
+        </div>
       </ion-content>
     </ion-pane>
   </body>
