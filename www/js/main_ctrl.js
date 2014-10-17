@@ -3,7 +3,9 @@
   angular.module('kj-ball')
   .controller('MainCtrl', ['$scope', '$interval', function($scope, $interval){
     var canvas,
-        context;
+        holeCanvas,
+        context,
+        holeContext;
 
     //get device size
     $scope.trueWidth = document.documentElement.clientWidth * 1;
@@ -20,19 +22,22 @@
       window.addEventListener('orientationchange', resizeCanvas, true);
       resizeCanvas();
 
-      context.fillStyle = #289eb5;
-      context.fillRect(0, 0, $scope.width, $scope.height);
-      // CIRCLE----------------------
-      //centerX = $scope.xHole,
-      //centerY = $scope.yHole,
-      //radius = 40;
-      //context.beginPath();
-      //context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-      //context.fillStyle = 'black';
-      //context.fill();
-      //context.lineWidth = 2;
-      //context.strokeStyle = 'red';
-      //context.stroke();
+      context.fillStyle = '#289eb5';
+      context.fillRect(0, 0, $scope.trueWidth, $scope.trueHeight);
+
+      // CIRCLE---------------------
+      holeCanvas = document.getElementById('hole');
+      holeContext = holeCanvas.getContext('2d');
+      var centerX = $scope.xHole,
+      centerY = $scope.yHole,
+      radius = 40;
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      context.fillStyle = 'black';
+      context.fill();
+      context.lineWidth = 1;
+      context.strokeStyle = 'black';
+      context.stroke();
       //---------------------------------
 
 
