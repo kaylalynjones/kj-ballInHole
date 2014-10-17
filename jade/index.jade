@@ -16,7 +16,8 @@ html
         h1.title Tenative: Ball-in-Hole
       ion-content(ng-controller='MainCtrl')
         .ball(style='top:{{y}}px; left:{{x}}px;')
-        .hole(style='top: 20px; left:20px;')
+        .hole(style='top: {{yHole}}px; left:{{xHole}}px;')
         p {{width}}
       .bar.bar-footer.bar-stable
-        button.button.button-assertive.pull-right Start!
+        button.button.button-assertive Start
+        button.button.button-balanced.pull-right Reset

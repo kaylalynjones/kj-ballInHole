@@ -18,11 +18,12 @@
       </ion-header-bar>
       <ion-content ng-controller="MainCtrl">
         <div style="top:{{y}}px; left:{{x}}px;" class="ball"></div>
-        <div style="top: 20px; left:20px;" class="hole"></div>
+        <div style="top: {{yHole}}px; left:{{xHole}}px;" class="hole"></div>
         <p>{{width}}</p>
       </ion-content>
       <div class="bar bar-footer bar-stable">
-        <button class="button button-assertive pull-right">Start!</button>
+        <button class="button button-assertive">Start</button>
+        <button class="button button-balanced pull-right">Reset</button>
       </div>
     </ion-pane>
   </body>
