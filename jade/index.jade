@@ -18,7 +18,7 @@ html
       ion-header-bar.bar-stable
         button.button.button-calm(ng-click='newGame()') New Game
         h1.title Ball-in-Hole
-        span.badge.badge-assertive.score {{player.getScore()}}
+        span.badge.badge-assertive.score.item-icon-right {{player.getScore()}}
       ion-content
         .background(style='width:{{trueWidth}}px; height:{{trueHeight}}px;')
           canvas#gameboard
