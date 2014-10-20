@@ -1,19 +1,4 @@
-.background {
-  background-color: #2968be;
-  overflow: hidden;
-}
-.ball {
-  background-color: #68c98f;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  position: absolute;
-}
-.hole {
-  background-color: black;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  position: absolute;
-  z-index: 100;
+.score {
+  font-size: 20px;
+  margin: 5px;
 }

@@ -10,13 +10,15 @@ html
     script(src='cordova.js')
     script(src='js/app.js')
     script(src='js/main_ctrl.js')
+    script(src='js/ball.js')
+    script(src='js/hole.js')
+    script(src='js/player.js')
   body(ng-app='kj-ball')
-    ion-pane
+    ion-pane(ng-controller='MainCtrl')
       ion-header-bar.bar-stable
-        button.button.button-calm New Game
+        button.button.button-calm(ng-click='newGame()') New Game
         h1.title Ball-in-Hole
-      ion-content(ng-controller='MainCtrl')
+        span.badge.badge-assertive.score {{player.getScore()}}
+      ion-content
         .background(style='width:{{trueWidth}}px; height:{{trueHeight}}px;')
           canvas#gameboard
-            canvas#hole
-            canvas#ball

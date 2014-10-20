@@ -10,19 +10,19 @@
     <script src="cordova.js"></script>
     <script src="js/app.js"></script>
     <script src="js/main_ctrl.js"></script>
+    <script src="js/ball.js"></script>
+    <script src="js/hole.js"></script>
+    <script src="js/player.js"></script>
   </head>
   <body ng-app="kj-ball">
-    <ion-pane>
+    <ion-pane ng-controller="MainCtrl">
       <ion-header-bar class="bar-stable">
-        <button class="button button-calm">New Game</button>
-        <h1 class="title">Ball-in-Hole</h1>
+        <button ng-click="newGame()" class="button button-calm">New Game</button>
+        <h1 class="title">Ball-in-Hole</h1><span class="badge badge-assertive score">{{player.getScore()}}</span>
       </ion-header-bar>
-      <ion-content ng-controller="MainCtrl">
+      <ion-content>
         <div style="width:{{trueWidth}}px; height:{{trueHeight}}px;" class="background">
-          <canvas id="gameboard">
-            <canvas id="hole"></canvas>
-            <canvas id="ball"></canvas>
-          </canvas>
+          <canvas id="gameboard"></canvas>
         </div>
       </ion-content>
     </ion-pane>

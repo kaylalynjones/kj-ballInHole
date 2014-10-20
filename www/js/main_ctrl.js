@@ -1,21 +1,29 @@
+/*global Hole, Ball, Player*/
 (function(){
   'use strict';
   angular.module('kj-ball')
   .controller('MainCtrl', ['$scope', '$interval', function($scope, $interval){
     var canvas,
-        holeCanvas,
         context,
-        ballCanvas,
-        holeContext,
-        ballContext;
+        ball,
+        hole,
+        FPS = 60;
 
-    //get device size
+    //get device size-----------------------------------------------------------
     $scope.trueWidth = document.documentElement.clientWidth * 1;
     $scope.trueHeight = document.documentElement.clientHeight * 1;
     $scope.height = $scope.trueHeight - 107;
     $scope.width = $scope.trueWidth - 20;
 
-    //canvas
+
+    $scope.newGame = function(){
+      console.log('new game');
+      $scope.player = new Player();
+      init();
+    };
+
+    $scope.newGame();
+
     function init(){
       canvas = document.getElementById('gameboard');
       context = canvas.getContext('2d');
@@ -24,54 +32,40 @@
       window.addEventListener('orientationchange', resizeCanvas, true);
       resizeCanvas();
 
-      context.fillStyle = '#289eb5';
-      context.fillRect(0, 0, $scope.trueWidth, $scope.trueHeight);
+      //place the ball randomly on the page---------------------------------------
+      $scope.y = Math.floor(Math.random()*($scope.height - 1 + 1) + 1);
+      $scope.x = Math.floor(Math.random()*($scope.width - 1 + 1) + 1);
+      $scope.yHole = Math.floor(Math.random()*($scope.height - 50 + 1) + 50);
+      $scope.xHole = Math.floor(Math.random()*($scope.width - 50 + 1) + 50);
+      //Math.floor(Math.random() * (max - min + 1) + min);
 
-      // HOLE  -------------------------
-      holeCanvas = document.getElementById('hole');
-      holeContext = holeCanvas.getContext('2d');
-      var centerX = $scope.xHole,
-      centerY = $scope.yHole,
-      radius = 15;
-      context.beginPath();
-      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-      context.fillStyle = 'black';
-      context.fill();
-      context.lineWidth = 1;
-      context.strokeStyle = 'black';
-      context.stroke();
-      //---------------------------------
+      hole = new Hole(15, {x:$scope.xHole, y:$scope.yHole});
+      ball = new Ball(10, {x:$scope.x, y:$scope.y});
+      setInterval(render, 1000/FPS);
 
-      //----BALL-------------------------
-      ballCanvas = document.getElementById('ball');
-      ballContext = ballCanvas.getContext('2d');
-      var ballCenterX = $scope.x,
-          ballCenterY = $scope.y,
-          ballRadius      = 10;
-      context.beginPath();
-      context.arc(ballCenterX, ballCenterY, ballRadius, 0, 2 * Math.PI, false);
-      context.fillStyle = 'yellow';
-      context.fill();
-      context.lineWidth = 1;
-      context.strokeStyle = 'yellow';
-      context.stroke();
-      //-----------------------------------
     }
-
 
     function resizeCanvas(){
       canvas.height = window.innerHeight;
       canvas.width = window.innerWidth;
     }
 
-    //place the ball randomly on the page
-    $scope.y = Math.floor(Math.random()*($scope.height - 1 + 1) + 1);
-    $scope.x = Math.floor(Math.random()*($scope.width - 1 + 1) + 1);
-    $scope.yHole = Math.floor(Math.random()*($scope.height - 50 + 1) + 50);
-    $scope.xHole = Math.floor(Math.random()*($scope.width - 50 + 1) + 50);
-    //Math.floor(Math.random() * (max - min + 1) + min);
+    function render(){
+      context.fillStyle = '#289eb5';
+      context.fillRect(0, 0, $scope.trueWidth, $scope.trueHeight);
 
-    //get phone roll, pitch and yaw
+      ball.setCenter({x:$scope.x,y:$scope.y});
+      hole.render(context);
+      ball.render(context);
+
+      if (ball.checkCollision(hole.getCenter())){
+        $scope.player.incrementScore();
+        ball.setColor('purple');
+        init();
+      }
+    }
+
+    //get phone roll, pitch and yaw---------------------------------------------
     window.addEventListener('deviceorientation', function(data){
       var yOffset = data.beta / 5,
           xOffset = data.gamma / 5;
@@ -83,6 +77,9 @@
         $scope.x += xOffset;
       }
       $scope.$digest();
+
+
+      //update ball's position
     });
 
     init();
