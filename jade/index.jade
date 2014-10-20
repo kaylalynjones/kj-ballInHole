@@ -15,9 +15,9 @@ html
     script(src='js/player.js')
   body(ng-app='kj-ball')
     ion-pane(ng-controller='MainCtrl')
-      ion-header-bar.bar-stable
-        button.button.button-calm(ng-click='newGame()') New Game
-        h1.title Ball-in-Hole
+      ion-header-bar.bar-light
+        button.button.button-balanced.start(ng-click='newGame()') New Game
+        h1.title Just Roll With It
         span.badge.badge-assertive.score.item-icon-right {{player.getScore()}}
       ion-content
         .background(style='width:{{trueWidth}}px; height:{{trueHeight}}px;')

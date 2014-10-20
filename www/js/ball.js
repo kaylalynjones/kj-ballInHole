@@ -3,7 +3,7 @@
 function Ball(radius, center){
   this.radius = radius;
   this.center = center;
-  this.color = 'yellow';
+  this.color = '#f67373';
 }
 
 Ball.prototype.setCenter = function(center){

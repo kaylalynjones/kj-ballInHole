@@ -7,6 +7,7 @@
         context,
         ball,
         hole,
+        pattern,
         FPS = 60;
 
     //get device size-----------------------------------------------------------
@@ -38,6 +39,15 @@
       $scope.yHole = Math.floor(Math.random()*($scope.height - 50 + 1) + 50);
       $scope.xHole = Math.floor(Math.random()*($scope.width - 50 + 1) + 50);
 
+      var imageObj = new Image();
+      imageObj.onload = function(){
+      pattern = context.createPattern(imageObj, 'repeat');
+      context.fillRect(0, 0, $scope.trueWidth, $scope.trueHeight);
+      context.fillStyle = pattern;
+      context.fill();
+      };
+      imageObj.src = '../img/congruent_pentagon.png';
+
       hole = new Hole(15, {x:$scope.xHole, y:$scope.yHole});
       ball = new Ball(10, {x:$scope.x, y:$scope.y});
       setInterval(render, 1000/FPS);
@@ -50,10 +60,11 @@
     }
 
     function render(){
-      context.fillStyle = '#289eb5';
+      context.fillStyle = pattern;
       context.fillRect(0, 0, $scope.trueWidth, $scope.trueHeight);
 
-      ball.setCenter({x:$scope.x,y:$scope.y});
+      context.fill();
+      ball.setCenter({x:$scope.x, y:$scope.y});
       hole.render(context);
       ball.render(context);
 
