@@ -12,8 +12,8 @@
     //get device size-----------------------------------------------------------
     $scope.trueWidth = document.documentElement.clientWidth * 1;
     $scope.trueHeight = document.documentElement.clientHeight * 1;
-    $scope.height = $scope.trueHeight - 107;
-    $scope.width = $scope.trueWidth - 20;
+    $scope.height = $scope.trueHeight - 50;
+    $scope.width = $scope.trueWidth;
 
 
     $scope.newGame = function(){
@@ -37,7 +37,6 @@
       $scope.x = Math.floor(Math.random()*($scope.width - 1 + 1) + 1);
       $scope.yHole = Math.floor(Math.random()*($scope.height - 50 + 1) + 50);
       $scope.xHole = Math.floor(Math.random()*($scope.width - 50 + 1) + 50);
-      //Math.floor(Math.random() * (max - min + 1) + min);
 
       hole = new Hole(15, {x:$scope.xHole, y:$scope.yHole});
       ball = new Ball(10, {x:$scope.x, y:$scope.y});
@@ -60,7 +59,6 @@
 
       if (ball.checkCollision(hole.getCenter())){
         $scope.player.incrementScore();
-        ball.setColor('purple');
         init();
       }
     }
